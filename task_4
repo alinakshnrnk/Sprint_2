@@ -1,0 +1,30 @@
+class EmployeeSalary:
+    hourly_payment = 400
+    
+    def __init__(self, name, hours, rest_days, email):
+        self.name = name
+        self.hours = hours
+        self.rest_days = rest_days
+        self.email = email
+    
+    @classmethod
+    def create_with_hours(cls, name, hours, rest_days, email):
+        return cls(name, hours, rest_days, email)
+    
+    @classmethod
+    def create_with_email(cls, name, hours, rest_days, email=None):
+        if email is None:
+            email = f"{name}@company.com"
+        return cls(name, hours, rest_days, email)
+    
+    def set_hourly_payment(self, hourly_payment):
+        self.hourly_payment = hourly_payment
+    
+    def salary(self):
+        if self.hours is None:
+            return 0
+        return self.hours * EmployeeSalary.hourly_payment
+
+
+scl = EmployeeSalary(name='Петр', hours=10, rest_days=2, email="peter@company.com")
+print(scl.salary())
