@@ -16,8 +16,9 @@ class ExtendedCase(Case):
         super().__init__(test_case_id, name, step_description, expected_result)
         self.precondition = precondition
         self.environment = environment
-
+        
     def print_extended_case_info(self):
+            super().print_test_case_info()
             print(f"Предусловие: {self.precondition}"
                   f"\nОкружение: {self.environment}")
 

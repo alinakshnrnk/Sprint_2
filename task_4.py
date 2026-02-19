@@ -8,23 +8,25 @@ class EmployeeSalary:
         self.email = email
     
     @classmethod
-    def create_with_hours(cls, name, hours, rest_days, email):
+    def get_hours(cls, name, hours, rest_days, email):
+        if hours is None:
+            hours = (7 - rest_days) * 8
         return cls(name, hours, rest_days, email)
     
     @classmethod
-    def create_with_email(cls, name, hours, rest_days, email=None):
+    def get_email(cls, name, hours, rest_days, email=None):
         if email is None:
-            email = f"{name}@company.com"
+            email = f'{name}@company.com'
         return cls(name, hours, rest_days, email)
     
-    def set_hourly_payment(self, hourly_payment):
-        self.hourly_payment = hourly_payment
-    
+    @classmethod
+    def set_hourly_payment(cls, hourly_payment):
+       cls.hourly_payment = hourly_payment
+
     def salary(self):
-        if self.hours is None:
-            return 0
-        return self.hours * EmployeeSalary.hourly_payment
+        return self.hours * self.hourly_payment
 
 
-scl = EmployeeSalary(name="John", hours=10, rest_days=2, email="john@company.com")
+scl = EmployeeSalary(name='Петрович', hours=40, rest_days=2, email='petrovich@company.com')
+scl.set_hourly_payment(300)
 print(scl.salary())

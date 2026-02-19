@@ -7,19 +7,18 @@ class Movies:
 
 
 class Comedy(Movies):
-    def show(self):
-     return f'Комедии: {self.movies}'
+    def show(self, movie):
+     super().add_movie(movie)
+     return print(f'Комедии: {self.movies}')
 
 
 class Drama(Movies):
-    def show(self):
-        return f'Драмы: {self.movies}'
+    def show(self, movie):
+     super().add_movie(movie)
+     return print(f'Драмы: {self.movies}')
 
 
 c = Comedy()
-c.add_movie('Большой куш')
+c.show('Большой куш')
 a = Drama()
-a.add_movie('Оружейный барон')
-
-print(c.show())
-print(a.show())
+a.show('Оружейный барон')
