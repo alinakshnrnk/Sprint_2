@@ -22,6 +22,12 @@ class TotalPoints(PointsForPlace, PointsForMeters):
     def get_total_points(self, place, meters):
         points_place = super().get_points_for_place(place)
         points_meters = super().get_points_for_meters(meters)
+
+        if isinstance(points_place, str):
+            return points_place
+        if isinstance(points_meters, str):
+            return points_meters
+
         total = points_place + points_meters
         return total
 
