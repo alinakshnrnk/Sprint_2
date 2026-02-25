@@ -23,13 +23,16 @@ class TotalPoints(PointsForPlace, PointsForMeters):
         points_place = super().get_points_for_place(place)
         points_meters = super().get_points_for_meters(meters)
 
-        if isinstance(points_place, str):
-            return points_place
-        if isinstance(points_meters, str):
-            return points_meters
+        if isinstance(points_place, str) or isinstance(points_meters, str):
 
-        total = points_place + points_meters
-        return total
+            if isinstance(points_place, str) and isinstance(points_meters, str):
+                return f"Ошибка: {points_place}, {points_meters}"
+            elif isinstance(points_place, str):
+                return points_place
+            else:
+                return points_meters
+
+        return points_place + points_meters
 
 
 points_for_place = PointsForPlace()
